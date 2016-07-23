@@ -1,12 +1,12 @@
 # Joseph Problem
+import numpy as np
+
 
 def safePosition(total, killPosition):
-    s1 = 0
-    s2 = 1
-    for i in range(2,total+1):
-        s1 = (s1 + killPosition) % i
-        s2 = (s2 + killPosition) % i
-        #print s1
-    return s1, s2
+    safeLocations = np.array(range(0,killPosition - 1))
+    for i in range(killPosition,total+1):
+        safeLocations = (safeLocations + killPosition) % i
+    return safeLocations
 
-print safePosition(5,3)
+# Example:
+print safePosition(10,6)
