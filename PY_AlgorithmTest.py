@@ -7,7 +7,6 @@ def safePosition(total, killPosition):
         s1 = (s1 + killPosition) % i
         s2 = (s2 + killPosition) % i
         #print s1
-        #Some Comments
     return s1, s2
 
 print safePosition(5,3)
