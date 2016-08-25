@@ -1,7 +1,17 @@
 import pandas as pd
 
-InputData = pd.read_excel(r"/Users/Emily/Desktop/Python/TestData/DataInput.xlsx", sheetname='Sheet1')
 
-InputData['Cost'] = InputData['Price']*InputData['Amount']
+data_file1 = pd.read_excel(r"/Users/Emily/Desktop/Python/TestData/file1.xlsx",parse_cols = r"A,B,C")
+data_filew = pd.read_excel(r"/Users/Emily/Desktop/Python/TestData/filew.xlsx")
 
-InputData.to_excel(r"/Users/Emily/Desktop/Python/TestData/DataOuput.xlsx", sheet_name='Result',startrow = 1, startcol = 1,index=False)
+data_filew['a1'] = data_filew['b1']
+
+result = pd.merge(data_file1, data_filew, how='outer', on=['a1']).fillna(0).sort(columns = 'a1', ascending = True)
+
+result['Minus'] = result['b13'] - result['a13']
+
+result = result[['a1','Minus','b12','a13','b13']]
+
+result[result['Minus'] > 0]
+
+print result
